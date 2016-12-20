@@ -1,0 +1,90 @@
+/******************************************************************
+Site: Longbeard Creative
+
+Stylesheet: Main Stylesheet
+******************************************************************/
+
+/*********************
+IMPORT ELEMENTS
+*********************/
+
+// Sass variables
+@import "elements/variables";
+
+// typography
+@import "elements/typography";
+
+// import mixins
+@import "elements/mixins";
+
+// buttons
+@import "elements/buttons";
+
+// forms (inputs & labels)
+@import "elements/forms";
+
+// fly-out menu
+@import "elements/forms";
+
+/*********************
+IMPORT BREAKPOINTS
+*********************/
+
+// styles in base.scss
+@import "breakpoints/base";
+
+@media only screen and (min-width: 481px) {
+
+	// styles in 481up.scss
+	@import "breakpoints/481up";
+
+} // end of media query
+
+/*********************
+TABLET & SMALLER LAPTOPS
+*********************/
+
+@media only screen and (min-width: 768px) {
+
+	// styles in 768up.scss
+	@import "breakpoints/768up";
+
+} // end of media query
+
+/*********************
+DESKTOP
+*********************/
+
+@media only screen and (min-width: 1030px) {
+
+	// styles in 1030up.scss
+	@import "breakpoints/1030up";
+
+} // end of media query
+
+/*********************
+LARGER DESKTOPS
+*********************/
+
+@media only screen and (min-width: 1240px) {
+
+	// styles in 1240up.scss
+	@import "breakpoints/1240up";
+
+} // end of media query
+
+/*********************
+IMPORT PAGES
+*********************/
+
+// Homepage
+@import "pages/homepage";
+
+// Contact
+@import "pages/contact";
+
+// Team
+@import "pages/team";
+
+// About
+@import "pages/about";
