@@ -11,8 +11,8 @@ FONT FACE - PLUTO
 
 @font-face {
     font-family: 'pluto-bold';
-    src: url('plutosansbold-webfont.woff2') format('woff2'),
-         url('plutosansbold-webfont.woff') format('woff');
+    src: url('/assets/fonts/plutosansbold-webfont.woff2') format('woff2'),
+         url('/assets/fonts/plutosansbold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -20,8 +20,8 @@ FONT FACE - PLUTO
 
 @font-face {
     font-family: 'pluto-light';
-    src: url('plutosanslight-webfont.woff2') format('woff2'),
-         url('plutosanslight-webfont.woff') format('woff');
+    src: url('/assets/fonts/plutosanslight-webfont.woff2') format('woff2'),
+         url('/assets/fonts/plutosanslight-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -38,6 +38,10 @@ $serif:             "Georgia", Cambria, Times New Roman, Times, serif;
 $lato:              'Lato', $sans-serif;
 $header-font:       'pluto-bold', $sans-serif;
 $body-font:         'pluto-light', $sans-serif;
+$h1:                6em 'pluto-bold', $sans-serif;
+$p:                 1.2em 'pluto-light', $sans-serif;
+$a:                 2em 'pluto-bold', $sans-serif;
+
 
 /*
 some nice typographical defaults

@@ -38,12 +38,12 @@ FONT FACE - PLUTO
 *********************/
 @font-face {
   font-family: 'pluto-bold';
-  src: url("plutosansbold-webfont.woff2") format("woff2"), url("plutosansbold-webfont.woff") format("woff");
+  src: url("/assets/fonts/plutosansbold-webfont.woff2") format("woff2"), url("/assets/fonts/plutosansbold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'pluto-light';
-  src: url("plutosanslight-webfont.woff2") format("woff2"), url("plutosanslight-webfont.woff") format("woff");
+  src: url("/assets/fonts/plutosanslight-webfont.woff2") format("woff2"), url("/assets/fonts/plutosanslight-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
 /*
@@ -771,6 +771,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+ul {
+  padding: 0; }
+
 /*********************
 LINK STYLES
 *********************/
@@ -1087,6 +1090,51 @@ use the _base.scss file.
 /*********************
 UNIVERSAL STYLES
 *********************/
+body {
+  background: #000 !important;
+  max-height: 100vh !important; }
+
+.homepage-tagline {
+  font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  bottom: 0;
+  position: absolute;
+  margin-left: 5%; }
+
+.nav-wrapper {
+  display: block;
+  float: right;
+  right: 3%;
+  position: absolute;
+  width: 15%;
+  top: 5%; }
+
+#home-nav ul li {
+  list-style-type: none;
+  padding: 20px 0 20px 0; }
+
+#home-nav ul li a {
+  text-decoration: none;
+  font: 2em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  opacity: 0.5;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out; }
+
+#home-nav ul li a:hover {
+  opacity: 1; }
+
+#logo {
+  width: 80px;
+  opacity: 0.5;
+  margin-bottom: 5px;
+  -webkit-transform: rotateY(5deg);
+  transform: rotateY(5deg);
+  transition: 0.3s ease-in-out; }
+
+#logo:hover {
+  opacity: 1; }
+
 /*********************
 RESPONSIVE STYLES
 *********************/
