@@ -41,11 +41,13 @@ FONT FACE - PLUTO
   src: url("/assets/fonts/plutosansbold-webfont.woff2") format("woff2"), url("/assets/fonts/plutosansbold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
+
 @font-face {
   font-family: 'pluto-light';
   src: url("/assets/fonts/plutosanslight-webfont.woff2") format("woff2"), url("/assets/fonts/plutosanslight-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
+
 /*
  i imported this one in the functions file so bones would look sweet.
  don't forget to remove it for your site.
@@ -60,6 +62,7 @@ p {
   word-wrap: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
+  -ms-hyphens: auto;
   hyphens: auto;
   -webkit-hyphenate-before: 2;
   -webkit-hyphenate-after: 3;
@@ -786,10 +789,10 @@ a, a:visited {
     color: #d10e3c; }
   a:link, a:visited:link {
     /*
-    this highlights links on iPhones/iPads.
-    so it basically works like the :hover selector
-    for mobile devices.
-    */
+		this highlights links on iPhones/iPads.
+		so it basically works like the :hover selector
+		for mobile devices.
+		*/
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
 
 /******************************************************************
@@ -799,9 +802,9 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
   text-rendering: optimizelegibility;
   font-weight: 500;
   /*
-  if you're going to use webfonts, be sure to check your weights
-  http://css-tricks.com/watch-your-font-weight/
-  */
+	if you're going to use webfonts, be sure to check your weights
+	http://css-tricks.com/watch-your-font-weight/
+	*/
   /* removing text decoration from all headline links */ }
   h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a {
     text-decoration: none; }
@@ -839,30 +842,30 @@ FOOTER STYLES
 *********************/
 @media only screen and (min-width: 481px) {
   /******************************************************************
-  Site Name:
-  Author:
-  
-  Stylesheet: 481px and Up Stylesheet
-  
-  This stylesheet is loaded for larger devices. It's set to
-  481px because at 480px it would load on a landscaped iPhone.
-  This isn't ideal because then you would be loading all those
-  extra styles on that same mobile connection.
-  
-  A word of warning. This size COULD be a larger mobile device,
-  so you still want to keep it pretty light and simply expand
-  upon your base.scss styles.
-  
-  ******************************************************************/
+Site Name:
+Author:
+
+Stylesheet: 481px and Up Stylesheet
+
+This stylesheet is loaded for larger devices. It's set to
+481px because at 480px it would load on a landscaped iPhone.
+This isn't ideal because then you would be loading all those
+extra styles on that same mobile connection.
+
+A word of warning. This size COULD be a larger mobile device,
+so you still want to keep it pretty light and simply expand
+upon your base.scss styles.
+
+******************************************************************/
   /*
-  IMPORTANT NOTE ABOUT SASS 3.3 & UP
-  You can't use @extend within media queries
-  anymore, so just be aware that if you drop
-  them in here, they won't work.
-  */
+IMPORTANT NOTE ABOUT SASS 3.3 & UP
+You can't use @extend within media queries
+anymore, so just be aware that if you drop
+them in here, they won't work.
+*/
   /*********************
-  NAVIGATION STYLES
-  *********************/
+NAVIGATION STYLES
+*********************/
   /* .menu is clearfixed inside mixins.scss */
   .menu {
     /* end .menu ul */ }
@@ -872,18 +875,17 @@ FOOTER STYLES
       /* end current highlighters */ }
       .menu ul li {
         /*
-        plan your menus and drop-downs wisely.
-        */ }
+				plan your menus and drop-downs wisely.
+				*/ }
         .menu ul li a {
           /*
-          you can use hover styles here even though this size
-          has the possibility of being a mobile device.
-          */ }
-
+					you can use hover styles here even though this size
+					has the possibility of being a mobile device.
+					*/ }
   /* end .menu */
   /*********************
-  POSTS & CONTENT STYLES
-  *********************/
+POSTS & CONTENT STYLES
+*********************/
   /* entry content */
   .entry-content {
     /* at this larger size, we can start to align images */ }
@@ -900,48 +902,47 @@ FOOTER STYLES
       margin-left: auto;
       display: block;
       clear: both; }
-
   /* end .entry-content */
   /*********************
-  FOOTER STYLES
-  *********************/
+FOOTER STYLES
+*********************/
   /*
-  check your menus here. do they look good?
-  do they need tweaking?
-  */
+check your menus here. do they look good?
+do they need tweaking?
+*/
   /* end .footer-links */ }
+
 /*********************
 TABLET & SMALLER LAPTOPS
 *********************/
 @media only screen and (min-width: 768px) {
   /******************************************************************
-  Site Name:
-  Author:
-  
-  Stylesheet: Tablet & Small Desktop Stylesheet
-  
-  Here's where you can start getting into the good stuff.
-  This size will work on iPads, other tablets, and desktops.
-  So you can start working with more styles, background images,
-  and other resources. You'll also notice the grid starts to
-  come into play. Have fun!
-  
-  ******************************************************************/
+Site Name:
+Author:
+
+Stylesheet: Tablet & Small Desktop Stylesheet
+
+Here's where you can start getting into the good stuff.
+This size will work on iPads, other tablets, and desktops.
+So you can start working with more styles, background images,
+and other resources. You'll also notice the grid starts to
+come into play. Have fun!
+
+******************************************************************/
   /*********************
-  GENERAL STYLES
-  *********************/
+GENERAL STYLES
+*********************/
   /*********************
-  LAYOUT & GRID STYLES
-  *********************/
+LAYOUT & GRID STYLES
+*********************/
   .wrap {
     width: 760px; }
-
   /*********************
-  HEADER STYLES
-  *********************/
+HEADER STYLES
+*********************/
   /*********************
-  NAVIGATION STYLES
-  *********************/
+NAVIGATION STYLES
+*********************/
   .nav {
     border: 0;
     /* end .menu ul li */
@@ -954,15 +955,15 @@ TABLET & SMALLER LAPTOPS
       float: left;
       position: relative;
       /*
-      plan your menus and drop-downs wisely.
-      */
+		plan your menus and drop-downs wisely.
+		*/
       /* showing sub-menus */ }
       .nav li a {
         border-bottom: 0;
         /*
-        you can use hover styles here even though this size
-        has the possibility of being a mobile device.
-        */ }
+			you can use hover styles here even though this size
+			has the possibility of being a mobile device.
+			*/ }
         .nav li a:hover, .nav li a:focus {
           color: #fff;
           text-decoration: underline; }
@@ -978,10 +979,10 @@ TABLET & SMALLER LAPTOPS
         .nav li ul.sub-menu li,
         .nav li ul.children li {
           /*
-          if you need to go deeper, go nuts
-          just remember deeper menus suck
-          for usability. k, bai.
-          */ }
+				if you need to go deeper, go nuts
+				just remember deeper menus suck
+				for usability. k, bai.
+				*/ }
           .nav li ul.sub-menu li a,
           .nav li ul.children li a {
             padding-left: 10px;
@@ -999,18 +1000,15 @@ TABLET & SMALLER LAPTOPS
       .nav li:hover > ul {
         top: auto;
         visibility: visible; }
-
   /* end .nav */
   /*********************
-  SIDEBARS & ASIDES
-  *********************/
+SIDEBARS & ASIDES
+*********************/
   .sidebar {
     margin-top: 2.2em; }
-
   .widgettitle {
     border-bottom: 2px solid #444;
     margin-bottom: 0.75em; }
-
   .widget {
     padding: 0 10px;
     margin: 2.2em 0; }
@@ -1020,7 +1018,6 @@ TABLET & SMALLER LAPTOPS
       .widget ul li ul {
         margin-top: 0.75em;
         padding-left: 1em; }
-
   /* links widget */
   /* meta widget */
   /* pages widget */
@@ -1033,51 +1030,53 @@ TABLET & SMALLER LAPTOPS
   /* search widget */
   /* text widget */
   /*********************
-  FOOTER STYLES
-  *********************/
+FOOTER STYLES
+*********************/
   /*
-  you'll probably need to do quite a bit
-  of overriding here if you styled them for
-  mobile. Make sure to double check these!
-  */
+you'll probably need to do quite a bit
+of overriding here if you styled them for
+mobile. Make sure to double check these!
+*/
   .footer-links ul li {
     /*
-    be careful with the depth of your menus.
-    it's very rare to have multi-depth menus in
-    the footer.
-    */ }
-
+			be careful with the depth of your menus.
+			it's very rare to have multi-depth menus in
+			the footer.
+			*/ }
   /* end .footer-links */ }
+
 /*********************
 DESKTOP
 *********************/
 @media only screen and (min-width: 1030px) {
   /******************************************************************
-  Site Name:
-  Author:
-  
-  Stylesheet: Desktop Stylsheet
-  
-  This is the desktop size. It's larger than an iPad so it will only
-  be seen on the Desktop.
-  
-  ******************************************************************/
+Site Name:
+Author:
+
+Stylesheet: Desktop Stylsheet
+
+This is the desktop size. It's larger than an iPad so it will only
+be seen on the Desktop.
+
+******************************************************************/
   .wrap {
     width: 1040px; } }
+
 /*********************
 LARGER DESKTOPS
 *********************/
 @media only screen and (min-width: 1240px) {
   /******************************************************************
-  Site Name: 
-  Author: 
-  
-  Stylesheet: Super Large Monitor Stylesheet
-  
-  You can add some advanced styles here if you like. This kicks in
-  on larger screens.
-  
-  ******************************************************************/ }
+Site Name: 
+Author: 
+
+Stylesheet: Super Large Monitor Stylesheet
+
+You can add some advanced styles here if you like. This kicks in
+on larger screens.
+
+******************************************************************/ }
+
 /*********************
 IMPORT PAGES
 *********************/
@@ -1125,7 +1124,8 @@ body {
   opacity: 1; }
 
 #logo {
-  width: 80px;
+  display: inline-block;
+  width: 140px;
   opacity: 0.5;
   margin-bottom: 5px;
   -webkit-transform: rotateY(5deg);
@@ -1134,6 +1134,13 @@ body {
 
 #logo:hover {
   opacity: 1; }
+
+  hr{
+    opacity: 0.5;
+    width: 140px;
+  }
+
+
 
 /*********************
 RESPONSIVE STYLES
@@ -1174,5 +1181,3 @@ UNIVERSAL STYLES
 /*********************
 RESPONSIVE STYLES
 *********************/
-
-/*# sourceMappingURL=style.css.map */
