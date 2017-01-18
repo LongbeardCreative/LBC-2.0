@@ -11,7 +11,8 @@ UNIVERSAL STYLES
 
 body{
 	background:#000 !important;
-	max-height:100vh !important
+	max-height:100vh !important;
+    overflow: hidden;
 }
 
 .homepage-tagline{
@@ -29,6 +30,9 @@ body{
 	position: absolute;
 	width:15%;
 	top:5%;	
+    opacity: 0;
+    transition: $slow;
+    transition-delay: .5s;
 }
 
 #home-nav ul li{
@@ -41,8 +45,8 @@ body{
 	font: $a;
 	color:#fff;
 	opacity:0.5;
-	transition: $transition;
-	-webkit-transition: $transition;
+	transition: $fast;
+	-webkit-transition: $fast;
 }
 
 #home-nav ul li a:hover{
@@ -55,7 +59,7 @@ body{
 	margin-bottom:5px;
 	-webkit-transform: rotateY(5deg);
     transform: rotateY(5deg);
-    transition: $transition;
+    transition: $fast;
 }
 
 #logo:hover{
@@ -63,6 +67,16 @@ body{
 
 }
 
+.canvas-source {
+	position: absolute;
+	z-index: 200;
+	opacity: 0.2;
+	display: none;
+}
+
+.js-stage {
+    transition: $slow;
+}
 
 /*********************
 RESPONSIVE STYLES
