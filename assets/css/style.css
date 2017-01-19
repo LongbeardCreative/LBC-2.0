@@ -1095,6 +1095,7 @@ body {
 
 .homepage-tagline {
   font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 150px;
   color: #fff;
   bottom: 0;
   position: absolute;
@@ -1135,11 +1136,10 @@ body {
 #logo:hover {
   opacity: 1; }
 
-  hr{
+hr{
     opacity: 0.5;
     width: 140px;
   }
-
 
 
 /*********************
