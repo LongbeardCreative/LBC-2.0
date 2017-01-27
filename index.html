@@ -73,6 +73,10 @@
       renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
       container.appendChild( renderer.domElement );
 
+
+
+
+
       // particles
 
       var PI2 = Math.PI * 2;
@@ -81,21 +85,21 @@
         color: 0xffffff,
         program: function ( context ) {
           context.beginPath();
-          context.arc( 0, 0, 0.6, 0, PI2, true );
+          context.arc( 0, 0, 0.28/*<-- controls the size of the particles*/, 0, PI2, true );
           context.fill();
 
         }
 
       } );
 
-      for ( var i = 0; i < 2300; i ++ ) {
+      for ( var i = 0; i < 10000; i ++ ) {
 
         particle = new THREE.Sprite( material );
-        particle.position.x = Math.random() * 2 - 1;
-        particle.position.y = Math.random() * 2 - 1;
-        particle.position.z = Math.random() * 2 - 1;
+        particle.position.x = Math.random() * 12/*<-- controls where the particles cluster on the sphere*/ - 1;
+        particle.position.y = Math.random() * 10/*<-- controls where the particles cluster on the sphere*/ - 1;
+        particle.position.z = Math.random() * 12/*<-- controls where the particles cluster on the sphere*/ - 1;
         particle.position.normalize();
-        particle.position.multiplyScalar( Math.random() * 10 + 450 );
+        particle.position.multiplyScalar( Math.random() * 10 + 1250/*<-- controls the size of the sphere*/);
         particle.scale.multiplyScalar( 3 * Math.sin(Math.random()*10)  );
         scene.add( particle );
 
@@ -168,12 +172,26 @@
     }
 
     function render() {
+      /*<-- controls the position of the camera looking at the scene in a x,y,z fashion*/
+      camera.position.set(750,900,600);
+      camera.position.x += ((mouseX - camera.position.x ) * .002);
+      camera.position.y += (( mouseY + 200 - camera.position.y ) * .002);
 
-      camera.position.x += ( mouseX - camera.position.x ) * .015;
-      camera.position.y += (( - mouseY + 200 - camera.position.y ) * .015);
-      camera.lookAt( scene.position );
+      /*
+      var timer = Date.now() * 0.0001;
+        camera.position.y = Math.cos( timer ) * 1200;
+        camera.position.z = Math.cos( timer ) * 1200;
+
+      */
+
+      
+      camera.lookAt( scene.position - 200 );
+
+      
 
       renderer.render( scene, camera );
+
+
 
     }
 
