@@ -498,6 +498,38 @@ Stylesheet: Page Transitions - styles
   100% {
     opacity: 1;
     transform: none; } }
+/******************************************************************
+Site Name: LBC
+
+Stylesheet: Fly-out Menu 
+
+
+******************************************************************/
+.nav-wrapper {
+  display: block;
+  background: #232526;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #232526, #414345);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #232526, #414345);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-clip: content-box;
+  float: right;
+  right: -15%;
+  position: absolute;
+  width: 15%;
+  top: 0;
+  height: 100vh;
+  padding-left: 15%;
+  overflow: hidden;
+  opacity: 0;
+  transition: right 0.15s;
+  -webkit-transition: right 0.15s; }
+
+.nav-wrapper:hover {
+  right: 0;
+  opacity: 1; }
+
 /*********************
 IMPORT BREAKPOINTS
 *********************/
@@ -841,7 +873,8 @@ UNIVERSAL STYLES
 *********************/
 body {
   background: #000 !important;
-  max-height: 100vh !important; }
+  max-height: 100vh !important;
+  overflow: hidden; }
 
 .homepage-tagline {
   font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -849,14 +882,6 @@ body {
   bottom: 0;
   position: absolute;
   margin-left: 5%; }
-
-.nav-wrapper {
-  display: block;
-  float: right;
-  right: 3%;
-  position: absolute;
-  width: 15%;
-  top: 5%; }
 
 #home-nav ul li {
   list-style-type: none;
@@ -883,6 +908,13 @@ body {
 
 #logo:hover {
   opacity: 1; }
+
+.logo-wrapper {
+  padding-top: 10%;
+  padding-left: 7%; }
+
+#home-nav {
+  padding-left: 7%; }
 
 /*********************
 RESPONSIVE STYLES
