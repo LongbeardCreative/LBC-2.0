@@ -8,35 +8,30 @@
   <meta name="description" content="Longbeard Creative">
   <meta name="author" content="LBC">
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-
   <link rel="stylesheet" href="assets/css/style.css?v=1.0">
 
-  
-  
-  
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 </head>
 
-<body>
-  <div id="homepage-container">
-  	<h1 class="homepage-tagline">Revolutionary <br />by Design.</h1>
-    <div class="nav-wrapper">
-      <div class="logo-wrapper">
-        <a href="/" alt="Home"><img id="logo" src="assets/img/LBC-W-Round-LARGE.png" /></a>
-      </div>
-      <nav id="home-nav">
-        <ul>
-          <li><a href="#">Story</a></li>
-          <li><a href="#">Work</a></li>
-          <li><a href="#">Team</a></li>
-          <li><a href="#">Contact</a></li>
-      </nav>
-    </div>
-  </div>
+<body class="m-scene" id="main">
+  <h1 class="homepage-tagline scene_element scene_element--fadein">Revolutionary <br />by Design.</h1>
+  <div class="nav-wrapper scene_element scene_element--fadeinup">
+    <div class="logo-wrapper">
+      <a href="/" alt="Home"><img id="logo" src="assets/img/Logos/LBC-W-Logo-SMALL.png" /></a>
 
+    </div>
+
+    <nav id="home-nav">
+      <ul>
+        <li><a href="/story.html">Story</a></li>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+    </nav>
+  </div>
   <script src="assets/js/threejs/build/three.js"></script>
   <script src="assets/js/threejs/renderers/Projector.js"></script>
   <script src="assets/js/threejs/renderers/CanvasRenderer.js"></script>
@@ -96,9 +91,9 @@
       for ( var i = 0; i < 2300; i ++ ) {
 
         particle = new THREE.Sprite( material );
-        particle.position.x = Math.random() * 5 - 1;
-        particle.position.y = Math.random() * 5 - 1;
-        particle.position.z = Math.random() * 5 - 1;
+        particle.position.x = Math.random() * 2 - 1;
+        particle.position.y = Math.random() * 2 - 1;
+        particle.position.z = Math.random() * 2 - 1;
         particle.position.normalize();
         particle.position.multiplyScalar( Math.random() * 10 + 450 );
         particle.scale.multiplyScalar( 3 * Math.sin(Math.random()*10)  );
@@ -184,6 +179,7 @@
 
   </script>
 
-	<script src="assets/js/jquery-3.1.1.min.js"></script>
+  <script src="assets/js/jquery-3.1.1.min.js"></script>
+  <script src="assets/js/smoothState.min.js"></script>
 </body>
 </html>
