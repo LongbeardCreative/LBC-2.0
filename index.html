@@ -62,6 +62,7 @@
 
       container = document.createElement('div');
       document.getElementById("main").appendChild(container);
+      document.getElementById("homepage-container").appendChild(container);
 
       camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
       camera.position.z = 1100;
@@ -73,10 +74,6 @@
       renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
       container.appendChild( renderer.domElement );
 
-
-
-
-
       // particles
 
       var PI2 = Math.PI * 2;
@@ -86,6 +83,7 @@
         program: function ( context ) {
           context.beginPath();
           context.arc( 0, 0, 0.28/*<-- controls the size of the particles*/, 0, PI2, true );
+          context.arc( 0, 0, 0.6, 0, PI2, true );
           context.fill();
 
         }
@@ -100,6 +98,14 @@
         particle.position.z = Math.random() * 12/*<-- controls where the particles cluster on the sphere*/ - 1;
         particle.position.normalize();
         particle.position.multiplyScalar( Math.random() * 10 + 1250/*<-- controls the size of the sphere*/);
+      for ( var i = 0; i < 2300; i ++ ) {
+
+        particle = new THREE.Sprite( material );
+        particle.position.x = Math.random() * 2 - 1;
+        particle.position.y = Math.random() * 2 - 1;
+        particle.position.z = Math.random() * 2 - 1;
+        particle.position.normalize();
+        particle.position.multiplyScalar( Math.random() * 10 + 450 );
         particle.scale.multiplyScalar( 3 * Math.sin(Math.random()*10)  );
         scene.add( particle );
 
@@ -172,6 +178,7 @@
     }
 
     function render() {
+      
       /*<-- controls the position of the camera looking at the scene in a x,y,z fashion*/
       camera.position.set(750,900,600);
       camera.position.x += ((mouseX - camera.position.x ) * .002);
@@ -191,7 +198,11 @@
 
       renderer.render( scene, camera );
 
+      camera.position.x += ( mouseX - camera.position.x ) * .015;
+      camera.position.y += (( - mouseY + 200 - camera.position.y ) * .015);
+      camera.lookAt( scene.position );
 
+      renderer.render( scene, camera );
 
     }
 
