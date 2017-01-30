@@ -11,8 +11,7 @@ UNIVERSAL STYLES
 
 body{
 	background:#000 !important;
-	max-height:100vh !important;
-	overflow:hidden;
+	max-height:100vh !important
 }
 
 .homepage-tagline{
@@ -23,7 +22,14 @@ body{
 	margin-left: 5%;
 }
 
-
+.nav-wrapper{
+	display:block;
+	float:right;
+	right:3%;
+	position: absolute;
+	width:15%;
+	top:5%;	
+}
 
 #home-nav ul li{
 	list-style-type:none;
@@ -56,17 +62,6 @@ body{
 	opacity:1;
 
 }
-
-.logo-wrapper{
-	padding-top:10%;
-	padding-left:7%;
-}
-
-#home-nav{
-	padding-left:7%;
-}
-
-
 
 
 /*********************
