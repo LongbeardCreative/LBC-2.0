@@ -1,3 +1,4 @@
+
 <!doctype html>
 
 <html lang="en">
@@ -35,175 +36,155 @@
   <script src="assets/js/threejs/build/three.js"></script>
   <script src="assets/js/threejs/renderers/Projector.js"></script>
   <script src="assets/js/threejs/renderers/CanvasRenderer.js"></script>
+  <script src="assets/js/threejs/libs/tween.min.js"></script>
 
   <script>
-
     var SCREEN_WIDTH = window.innerWidth-10,
     SCREEN_HEIGHT = window.innerHeight-10,
-
     mouseX = 0, mouseY = 0,
-
     windowHalfX = window.innerWidth / 2,
     windowHalfY = window.innerHeight / 2,
-
     SEPARATION = 200,
     AMOUNTX = 10,
     AMOUNTY = 10,
-
     camera, scene, renderer;
-
     init();
     animate();
 
     function init() {
-
       var container, separation = 100, amountX = 50, amountY = 50,
       particles, particle;
-
       container = document.createElement('div');
       document.getElementById("main").appendChild(container);
-      document.getElementById("homepage-container").appendChild(container);
-
       camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
       camera.position.z = 1100;
-
       scene = new THREE.Scene();
-
       renderer = new THREE.CanvasRenderer();
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
       container.appendChild( renderer.domElement );
 
+
       // particles
-
       var PI2 = Math.PI * 2;
-      var material = new THREE.SpriteCanvasMaterial( {
-
+      var material = new THREE.SpriteCanvasMaterial({
         color: 0xffffff,
         program: function ( context ) {
           context.beginPath();
           context.arc( 0, 0, 0.28/*<-- controls the size of the particles*/, 0, PI2, true );
-          context.arc( 0, 0, 0.6, 0, PI2, true );
           context.fill();
-
         }
+      });
 
-      } );
-
-      for ( var i = 0; i < 10000; i ++ ) {
-
+      for ( var i = 0; i < 8000; i ++ ) {
         particle = new THREE.Sprite( material );
-        particle.position.x = Math.random() * 12/*<-- controls where the particles cluster on the sphere*/ - 1;
+        particle.position.x = Math.random() * 12/*<-- controls where the particles cluster on the sphere, 2 = spread around whole sphere*/ - 1;
         particle.position.y = Math.random() * 10/*<-- controls where the particles cluster on the sphere*/ - 1;
         particle.position.z = Math.random() * 12/*<-- controls where the particles cluster on the sphere*/ - 1;
         particle.position.normalize();
-        particle.position.multiplyScalar( Math.random() * 10 + 1250/*<-- controls the size of the sphere*/);
-      for ( var i = 0; i < 2300; i ++ ) {
-
-        particle = new THREE.Sprite( material );
-        particle.position.x = Math.random() * 2 - 1;
-        particle.position.y = Math.random() * 2 - 1;
-        particle.position.z = Math.random() * 2 - 1;
-        particle.position.normalize();
-        particle.position.multiplyScalar( Math.random() * 10 + 450 );
+        particle.position.multiplyScalar( Math.random() * 10 /*<-- distribution of particles depth */ + 1350/*<-- controls the size of the sphere*/);
         particle.scale.multiplyScalar( 3 * Math.sin(Math.random()*10)  );
-        scene.add( particle );
 
+        
+        scene.add( particle );
       }
+
+        var posX = camera.position.x + 100;
+        var posY = camera.position.y + 30;
+        var posZ = camera.position.z - 200;
+
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        var from = {
+            x: camera.position.x - 1200,
+            y: camera.position.y - 200,
+            z: camera.position.z - 1200
+        };
+
+        var to = {
+            x: posX,
+            y: posY,
+            z: posZ
+        };
+        var tween = new TWEEN.Tween(from)
+            .to(to, 7000)
+            .easing(TWEEN.Easing.Quartic.InOut)
+            .onUpdate(function () {
+            camera.position.set(this.x, this.y, this.z);
+            camera.lookAt( scene.position - 270);
+        })
+            .start();
+
 
       document.addEventListener( 'mousemove', onDocumentMouseMove, false );
       document.addEventListener( 'touchstart', onDocumentTouchStart, false );
       document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
-      //
-
       window.addEventListener( 'resize', onWindowResize, false );
 
+
     }
+
+
+
 
     function onWindowResize() {
-
       windowHalfX = window.innerWidth / 2;
       windowHalfY = window.innerHeight / 2;
-
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-
       renderer.setSize( window.innerWidth-10, window.innerHeight-10);
-
     }
 
-    //
-
     function onDocumentMouseMove(event) {
-
       mouseX = event.clientX - windowHalfX;
       mouseY = event.clientY - windowHalfY;
     }
 
     function onDocumentTouchStart( event ) {
-
       if ( event.touches.length > 1 ) {
-
         event.preventDefault();
-
         mouseX = event.touches[ 0 ].pageX - windowHalfX;
         mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
       }
-
     }
 
     function onDocumentTouchMove( event ) {
-
       if ( event.touches.length == 1 ) {
-
         event.preventDefault();
-
         mouseX = event.touches[ 0 ].pageX - windowHalfX;
         mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
       }
-
     }
-
-    //
 
     function animate() {
-
       requestAnimationFrame( animate );
-
       render();
-
-    }
-
-    function render() {
       
+TWEEN.update();
       /*<-- controls the position of the camera looking at the scene in a x,y,z fashion*/
-      camera.position.set(750,900,600);
-      camera.position.x += ((mouseX - camera.position.x ) * .002);
-      camera.position.y += (( mouseY + 200 - camera.position.y ) * .002);
+      scene.position.set(-750,-680,-25);
 
+
+      camera.position.x += ((mouseX +100  - camera.position.x ) * .002);
+      camera.position.y += (( mouseY - camera.position.y ) * .002);
+
+      
       /*
       var timer = Date.now() * 0.0001;
         camera.position.y = Math.cos( timer ) * 1200;
         camera.position.z = Math.cos( timer ) * 1200;
-
       */
-
       
-      camera.lookAt( scene.position - 200 );
-
       
 
+      
+    }
+
+    function render() {
+      
+      
       renderer.render( scene, camera );
-
-      camera.position.x += ( mouseX - camera.position.x ) * .015;
-      camera.position.y += (( - mouseY + 200 - camera.position.y ) * .015);
-      camera.lookAt( scene.position );
-
-      renderer.render( scene, camera );
-
     }
 
   </script>
