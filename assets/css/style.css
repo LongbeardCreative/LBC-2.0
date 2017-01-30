@@ -1097,9 +1097,17 @@ body {
 .homepage-tagline {
   font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
-  bottom: 0;
   position: absolute;
-  margin-left: 5%; }
+  padding: 50px;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, calc(-50% - 50px));
+  -ms-transform: translate(-50%, calc(-50% - 50px));
+  transform: translate(-50%, calc(-50% - 50px));
+  background: black;
+  z-index: 99999999;
+  transition: 0.6s ease-in-out; }
 
 .nav-wrapper {
   display: block;

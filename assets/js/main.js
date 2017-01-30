@@ -32,14 +32,13 @@ var Explode = {
         };
         var reset = this.reset.bind(this)
             , rewind = this.rewind.bind(this);
-    }
-    , // Create all needed THREE stuff
+    }, // Create all needed THREE stuff
     setupStage: function () {
         var loader = new THREE.TextureLoader();
         loader.crossOrigin = '';
         this.sprite = loader.load(this.spriteData);
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 5000);
+        this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 2000);
         this.camera.position.z = 1000;
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -57,15 +56,15 @@ var Explode = {
             this.render();
         }.bind(this));
     }
-    , // rewind animation and stop explosion
+    ,
+    // rewind animation and stop explosion
     rewind: function () {
         this.tick = 0;
         // argh..
         requestAnimationFrame(function () {
             this.explode = false;
         }.bind(this));
-    }
-    , // reset stage
+    }, // reset stage
     reset: function () {
         window.cancelAnimationFrame(this.raf);
         this.world.remove(this.particles);
@@ -96,8 +95,7 @@ var Explode = {
             self.mouseDown = false;
             self.explode = true;
         });
-    }
-    , // create and returns a array with all needed pixels, including
+    }, // create and returns a array with all needed pixels, including
     // their position and color
     getPixels: function (img) {
         var pixels = []
@@ -159,15 +157,11 @@ var Explode = {
         }
         // return array with pixels
         return pixels;
-    }
-    , // Create a `THREE.Points()` with an array of pixels
+    }, // Create a `THREE.Points()` with an array of pixels
     createParticles: function (pixels) {
         var geometry = new THREE.Geometry()
             , colors = []
-            , material
-            , pixel
-            , vertex
-            , particles;
+            , material, pixel, vertex, particles;
         for (i = 0; i < pixels.length; i++) {
             pixel = pixels[i];
             vertex = new THREE.Vector3();
@@ -179,7 +173,7 @@ var Explode = {
             vertex.destY = vertex.y - pixel.destY;
             vertex.z = pixel.z;
             vertex.startZ = pixel.z;
-            vertex.destZ = pixel.z - (pixel.destZ * 10);
+            vertex.destZ = pixel.z - (pixel.destZ * 100);
             geometry.vertices.push(vertex);
             colors[i] = new THREE.Color('rgb(' + pixel.rgb[0] + ', ' + pixel.rgb[1] + ', ' + pixel.rgb[2] + ')');
         }
@@ -201,14 +195,13 @@ var Explode = {
         if (this.mouseDown && this.tick < 0) {
             this.tick -= 0;
         }
-        if (this.explode && this.tick < (duration + 150)) {
+        if (this.explode && this.tick < duration) {
             while (i--) {
                 vertice = this.vertices[i];
                 if (vertice.z >= 0) {
                     vertice.z = easingFunc(this.tick, vertice.destZ, vertice.startZ + vertice.destZ, duration);
                 }
             }
-
             if (this.mouseDown === false) {
                 this.tick--;
             }
@@ -233,8 +226,7 @@ var Explode = {
     }
     , imgSources: {
         lb_logo: '../assets/img/lb_logo.png'
-    , }
-    , // spriteData: 'https://dl.dropboxusercontent.com/s/nvkhzgjabyjy0lv/ball.png'
+    , }, // spriteData: 'https://dl.dropboxusercontent.com/s/nvkhzgjabyjy0lv/ball.png'
     spriteData: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjM4QUQyQjJCOURCQTExRTU5RDA1OUNERUU1RjdFRTc0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjM4QUQyQjJDOURCQTExRTU5RDA1OUNERUU1RjdFRTc0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MzhBRDJCMjk5REJBMTFFNTlEMDU5Q0RFRTVGN0VFNzQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MzhBRDJCMkE5REJBMTFFNTlEMDU5Q0RFRTVGN0VFNzQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5grvxNAAAFrklEQVR42uydP0hcWRTG7xNDIClkLZS1UcGBLQSD6JbKFhLMhiCmcIuAIMIWaTawxRZZdmUttljYbSwWgrCQQouEIBtDsAixVAkKFsIIamPQwmCxgii45xvPDeNz/rw38959582cH3xVYDTfN/c9Z9695/MuLi6MYL4gfUXKkDpJ7aQ2UiupmdREukW6QTojnZCOSUekA9I+aY+0Q8qStkifJP+HPWGBfEn6mtRP6iX1cABRgYA2SB9Iq6QV0kcN5CodpG9Ig6QBXgmuwMpZJr0nvSPt1nMg35KGSXdJXQLenNukt6Q3pNf1Egiu+aOkEdIDwZfyBdIr0ku+J9VcILdJ35HGSEMmPSyR5klzpP9qJZCHpEe8KtIKVstz0os0B3KHNMG6bdIPVsgsaz1tgUySvif1mdpjjfQ36VkaAsEHuMesRlO7nJNmWFmpgeBm/QPpnqkfFkl/8c1fVCDjpB9J3ab+2CT9QfpHSiBPSD+RWkz9ckj6nfRn0oE8Zd00yilpmpVIIL+SftEcrjHF3jgNBKviN/W+KD9XulIaKrxnPFXPy75hn7gIZJxv4HrPKM1N9mk8zkCG+E/bFvU7EC3s11AcgWT4Q1+3+hyKbvYtE3Ugj+vsE3iU3GP/IgtkMswLKkXf0JNRBIKv0PGtbaN6WhWN7OOdagPBs4w+9TMS+tjPigN5GOQFlFBMsK+hA8ETvkemNp70SaKsr8UCwYaEEfUvFkbY38CBYKvOmPoWK2Psc6BARk26tuqkkSH2OVAgeqlyd+m6hv/rd2zv/Fe9csZ949u26l8hw+qRU4ZLXbI6zOXGZ8Udd9n3goHgSECXeuSULva9YCCD6k8iDBYKBCeXBtSbRBhg/68EgmNknepNInSy/1cC6VdfEqXfH0ivepIovfmB4Ohxj3qSKD2cQy4QnANvU08SpY1zyAWSUT9EkLGB6F9Xcv7aygXSrl6IoN0GovcPOfeRXCCt6oUIWm0gzeqFCJptIE3qhQiabCC31AsR5HLAI9wL9UIMHlbImfoggjN7yTpRL0RwYgM5Vi9EcGwDOVIvRHBkAzlQL0RwYAPZVy9EsG8D2VMvRLBnA9lRL0SwYwPJqhciyNpAtvQ+IuL+sWUDwSz0DfUkUTY4h8/bgD6oJ4ny2X8byKp6kiir/kBW9K+tRP+6WvEHgsqGZfUmEZZNXmVG/nGE9+pNIlzxPT8Q9Gdsqz9O2WbfCwayay77MxR3vDW+Ehn/oc836pFTrvntDwRHdBfUJycsmAJNPoUGB7xSr5xQ0OdCgaDmZ0n9ipUl9jlQIHi2O6+excq8KbKXodh4pjm9dMV6qZor9o/FAkG9z3PjqAirjijra6kRfyjAmlUPI2XWlCkWawjwAmvqYySsBXmDlwsEbWQowDpXP6vinH1crzYQgDayGfW0KmZMwFa3hhAvuKi+VsRimDd00ECwIwJtZJvqbyg22bds1IHYT5doIztUnwNxyH6F+tYjbKELquHQRnaqfpfklH0KXaVXSeURquGm1fOSTJsKK/QaqviBU+p7QaaqecNqj2G0l6lEewwt2vQpqOnTol24grpwLdoWHQFRVhnhl9rlD0Hapy5gheSDAix0LtViXRK+tcUXhc/ieHEvxkEOKMCaYNVCUw8eKs2y1uP6IZ6DyRroXELNT5prMPDYFU/6XsT9gzxHo06wQlDzM2bSVRaD+yI2JMwZR4+zPcezZzCCaJRXywPBQSzwqsBWHaeTLrwEhwGhPAb9GahskNDKgI3P2GuL7Z2vk/olPAHTmTrMZWUDWgIwmN7llFQclsH5DBwJeGd8G5/rNZB80BKAwfSYhY7x25j4HOWQTpx2xQFLnOnDMTKcXPooyQBP+PwyjN/GxOcMr5x2DggDI5v5noRJbDfM5bypE77mY5DLAQewxysBH+Bw9PiT5P+wpwPlZPG/AAMA59FYDkcAVosAAAAASUVORK5CYII='
 };
 /*!
@@ -313,14 +305,20 @@ var Easing = {
     }
 };
 Explode.init();
-
-$(function(){
-    setTimeout(function(){
-        $('.js-stage').css( 'transform', 'translateX(-25vw) translateY(30vh)' ); 
-        $('.nav-wrapper').css('opacity', 1);
-        setTimeout(function(){
-            $('.js-stage').fadeOut(450);
-            $('.homepage-tagline').fadeIn(500);
-        }, 100);
-    }, 3000);
+$(function () {
+    setTimeout(function () {
+        $('.js-stage').hide();
+        $('.homepage-tagline').fadeIn(0);
+        setTimeout(function () {
+            $('.nav-wrapper').css('opacity', 1);
+            $('.homepage-tagline').css({
+                'bottom' : '0px',
+                'left' : '5%',
+                'top' : 'initial',
+                'transform' : 'initial',
+                'margin-right' : 'initial',
+                'padding' : 'initial'
+            });
+        }, 125);
+    }, 2600);
 });
