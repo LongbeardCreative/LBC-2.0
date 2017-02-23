@@ -12,7 +12,11 @@ UNIVERSAL STYLES
 body{
 	background:#000 !important;
 	max-height:100vh !important;
+<<<<<<< HEAD
     overflow: hidden;
+=======
+	overflow:hidden;
+>>>>>>> master
 }
 
 .homepage-tagline{
@@ -29,6 +33,7 @@ body{
     transition: $slow;
 }
 
+<<<<<<< HEAD
 .nav-wrapper{
 	display:block;
 	float:right;
@@ -40,6 +45,9 @@ body{
     transition: $slow;
     transition-delay: .5s;
 }
+=======
+
+>>>>>>> master
 
 #home-nav ul li{
 	list-style-type:none;
@@ -60,7 +68,7 @@ body{
 }
 
 #logo{
-	width:80px;
+	width:130px;
 	opacity:0.5;
 	margin-bottom:5px;
 	-webkit-transform: rotateY(5deg);
@@ -73,6 +81,7 @@ body{
 
 }
 
+<<<<<<< HEAD
 .canvas-source {
 	position: absolute;
 	z-index: 200;
@@ -83,6 +92,19 @@ body{
 .js-stage {
     transition: $slow;
 }
+=======
+.logo-wrapper{
+	padding-top:10%;
+	padding-left:7%;
+}
+
+#home-nav{
+	padding-left:7%;
+}
+
+
+
+>>>>>>> master
 
 /*********************
 RESPONSIVE STYLES
