@@ -55,6 +55,7 @@ p {
   word-wrap: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
+  -ms-hyphens: auto;
   hyphens: auto;
   -webkit-hyphenate-before: 2;
   -webkit-hyphenate-after: 3;
@@ -468,40 +469,72 @@ Stylesheet: Page Transitions - styles
   /** An element that fades in and slides up */
   /** An element that fades in and slides from the right */ }
   .m-scene .scene_element {
+    -webkit-animation-duration: 0.25s;
     animation-duration: 0.25s;
     transition-timing-function: ease-in;
+    -webkit-animation-fill-mode: both;
     animation-fill-mode: both; }
   .m-scene .scene_element--fadein {
+    -webkit-animation-name: fadeIn;
     animation-name: fadeIn; }
   .m-scene .scene_element--fadeinup {
+    -webkit-animation-name: fadeInUp;
     animation-name: fadeInUp; }
   .m-scene .scene_element--fadeinright {
+    -webkit-animation-name: fadeInRight;
     animation-name: fadeInRight; }
 
 /* Keyframes for animations */
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 @keyframes fadeIn {
   0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
-@keyframes fadeInUp {
+@-webkit-keyframes fadeInUp {
   0% {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0); }
   100% {
     opacity: 1;
+    -webkit-transform: none;
+    transform: none; } }
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; } }
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
     transform: none; } }
 @keyframes fadeInRight {
   0% {
     opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0); }
   100% {
     opacity: 1;
+    -webkit-transform: none;
     transform: none; } }
 /******************************************************************
 Site Name: LBC
 
-Stylesheet: Fly-out Menu 
+Stylesheet: Fly-out Menu
 
 
 ******************************************************************/
@@ -509,26 +542,49 @@ Stylesheet: Fly-out Menu
   display: block;
   background: #232526;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #232526, #414345);
+  background: -webkit-linear-gradient(to left, rgba(35, 37, 38, 0.4), transparent);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #232526, #414345);
+  background: linear-gradient(to left, rgba(35, 37, 38, 0.4), transparent);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-clip: content-box;
-  float: right;
-  right: -15%;
-  position: absolute;
-  width: 15%;
-  top: 0;
-  height: 100vh;
-  padding-left: 15%;
-  overflow: hidden;
-  opacity: 0;
-  transition: right 0.15s;
-  -webkit-transition: right 0.15s; }
+  float: left;
+  width: 300px; }
 
-.nav-wrapper:hover {
-  right: 0;
-  opacity: 1; }
+#home-nav ul li {
+  list-style-type: none;
+  padding: 20px; }
+  #home-nav ul li a {
+    text-decoration: none;
+    font: 2em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+    opacity: 0.5;
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out; }
+    #home-nav ul li a:hover {
+      opacity: 1; }
+
+#logo {
+  width: 130px;
+  opacity: 0.5;
+  margin-bottom: 5px;
+  -webkit-transform: rotateY(5deg);
+  transform: rotateY(5deg);
+  transition: 0.3s ease-in-out; }
+  #logo:hover {
+    opacity: 1; }
+
+.canvas-source {
+  position: absolute;
+  z-index: 200;
+  opacity: 0.2;
+  display: none; }
+
+.js-stage {
+  transition: 0.6s ease-in-out; }
+
+.logo-wrapper {
+  padding-top: 10%;
+  padding-left: 7%; }
 
 /*********************
 IMPORT BREAKPOINTS
@@ -536,7 +592,7 @@ IMPORT BREAKPOINTS
 /******************************************************************
 Stylesheet: Universal Site Styles
 
-Only put styles in here that will be used across the entire site. 
+Only put styles in here that will be used across the entire site.
 For styles only applying to one particular page, use the appropriate
 page SCSS file.
 ******************************************************************/
@@ -612,6 +668,17 @@ h5, .h5 {
 /*********************
 HEADER STYLES [FOR NAV STYLES -- USE _MENU.SCSS]
 *********************/
+.tagline {
+  font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  position: absolute;
+  padding: 50px;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  z-index: 99999999;
+  transition: 0.6s ease-in-out; }
+
 /*********************
 CONTENT STYLES
 *********************/
@@ -876,46 +943,6 @@ body {
   max-height: 100vh !important;
   overflow: hidden; }
 
-.homepage-tagline {
-  font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #fff;
-  bottom: 0;
-  position: absolute;
-  margin-left: 5%; }
-
-#home-nav ul li {
-  list-style-type: none;
-  padding: 20px 0 20px 0; }
-
-#home-nav ul li a {
-  text-decoration: none;
-  font: 2em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #fff;
-  opacity: 0.5;
-  transition: 0.3s ease-in-out;
-  -webkit-transition: 0.3s ease-in-out; }
-
-#home-nav ul li a:hover {
-  opacity: 1; }
-
-#logo {
-  width: 130px;
-  opacity: 0.5;
-  margin-bottom: 5px;
-  -webkit-transform: rotateY(5deg);
-  transform: rotateY(5deg);
-  transition: 0.3s ease-in-out; }
-
-#logo:hover {
-  opacity: 1; }
-
-.logo-wrapper {
-  padding-top: 10%;
-  padding-left: 7%; }
-
-#home-nav {
-  padding-left: 7%; }
-
 /*********************
 RESPONSIVE STYLES
 *********************/
@@ -943,17 +970,82 @@ UNIVERSAL STYLES
 /*********************
 RESPONSIVE STYLES
 *********************/
-/******************************************************************
-Stylesheet: About Page
+.about-page {
+  /******************************************************************
+  Stylesheet: About Page
+  
+  Page-specific styles ONLY. If the styles will be used across the site,
+  use the _base.scss file.
+  ******************************************************************/
+  /*********************
+  UNIVERSAL STYLES
+  *********************/
+  /*********************
+  SLIDER
+  *********************/
+  /*********************
+  RESPONSIVE STYLES
+  *********************/ }
+  .about-page .wrapper {
+    background-image: url("/assets/img/team_photo_bw_1920x1200.jpg");
+    background-position: top center;
+    background-size: cover;
+    width: calc(100vw - 300px);
+    max-width: 1600px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 100vh; }
+  .about-page .slider {
+    padding: 0 15%; }
+    .about-page .slider.content h1 {
+      font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: white;
+      margin-bottom: 15px; }
+    .about-page .slider.content p {
+      display: inline-block;
+      font: 1.2em "pluto-light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      line-height: 1.8em;
+      color: white; }
+    .about-page .slider .nav {
+      width: 90vw;
+      max-width: 1450px;
+      margin-top: -200px;
+      position: absolute;
+      display: inline-block;
+      padding: initial;
+      display: inline-block;
+      left: 250px; }
+      .about-page .slider .nav .next,
+      .about-page .slider .nav .prev {
+        width: 50%;
+        margin: initial;
+        color: #D4D4D4; }
+        .about-page .slider .nav .next::before,
+        .about-page .slider .nav .prev::before {
+          border-style: solid;
+          border-width: 2px 2px 0 0;
+          content: '';
+          display: inline-block;
+          height: 100px;
+          position: relative;
+          vertical-align: top;
+          width: 100px; }
+      .about-page .slider .nav .next {
+        float: right;
+        right: 0;
+        text-align: right; }
+        .about-page .slider .nav .next::before {
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg); }
+      .about-page .slider .nav .prev {
+        float: left;
+        text-align: left;
+        left: 0; }
+        .about-page .slider .nav .prev::before {
+          -webkit-transform: rotate(-135deg);
+          -ms-transform: rotate(-135deg);
+          transform: rotate(-135deg); }
 
-Page-specific styles ONLY. If the styles will be used across the site,
-use the _base.scss file.
-******************************************************************/
-/*********************
-UNIVERSAL STYLES
-*********************/
-/*********************
-RESPONSIVE STYLES
-*********************/
 
-/*# sourceMappingURL=style.css.map */

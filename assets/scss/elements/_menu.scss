@@ -1,30 +1,66 @@
 /******************************************************************
 Site Name: LBC
 
-Stylesheet: Fly-out Menu 
+Stylesheet: Fly-out Menu
 
 
 ******************************************************************/
-.nav-wrapper{
+.nav-wrapper {
     display: block;
-    background: #232526; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #232526 , #414345); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #232526 , #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	background-clip:content-box;
-    float: right;
-    right: -15%;
-    position: absolute;
-    width: 15%;
-    top: 0;
-    height: 100vh;
-    padding-left:15%;
-    overflow:hidden;
-    opacity:0;
-    transition: right 0.15s;
-    -webkit-transition: right 0.15s;
+    background: #232526;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, rgba(35, 37, 38, 0.4) , rgba(0, 0, 0, 0));
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, rgba(35, 37, 38, 0.4) , rgba(0, 0, 0, 0));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-clip: content-box;
+    float: left;
+    width: 300px;
 }
 
-.nav-wrapper:hover{
-	right:0;
-	opacity:1;
+#home-nav ul li {
+    list-style-type: none;
+    padding: 20px;
+
+    a {
+        text-decoration: none;
+        font: $a;
+        color: #fff;
+        opacity: 0.5;
+        transition: $fast;
+        -webkit-transition: $fast;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+#logo {
+    width: 130px;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    -webkit-transform: rotateY(5deg);
+    transform: rotateY(5deg);
+    transition: $fast;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.canvas-source {
+    position: absolute;
+    z-index: 200;
+    opacity: 0.2;
+    display: none;
+}
+
+.js-stage {
+    transition: $slow;
+}
+
+.logo-wrapper {
+    padding-top: 10%;
+    padding-left: 7%;
 }

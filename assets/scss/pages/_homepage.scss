@@ -12,62 +12,8 @@ UNIVERSAL STYLES
 body{
 	background:#000 !important;
 	max-height:100vh !important;
-	overflow:hidden;
+    overflow: hidden;
 }
-
-.homepage-tagline{
-	font:$h1;
-	color:#fff;
-	bottom: 0;
-	position: absolute;
-	margin-left: 5%;
-}
-
-
-
-#home-nav ul li{
-	list-style-type:none;
-	padding: 20px 0 20px 0;
-}
-
-#home-nav ul li a{
-	text-decoration:none;
-	font: $a;
-	color:#fff;
-	opacity:0.5;
-	transition: $transition;
-	-webkit-transition: $transition;
-}
-
-#home-nav ul li a:hover{
-	opacity:1;
-}
-
-#logo{
-	width:130px;
-	opacity:0.5;
-	margin-bottom:5px;
-	-webkit-transform: rotateY(5deg);
-    transform: rotateY(5deg);
-    transition: $transition;
-}
-
-#logo:hover{
-	opacity:1;
-
-}
-
-.logo-wrapper{
-	padding-top:10%;
-	padding-left:7%;
-}
-
-#home-nav{
-	padding-left:7%;
-}
-
-
-
 
 /*********************
 RESPONSIVE STYLES

@@ -1,7 +1,7 @@
 /******************************************************************
 Stylesheet: Universal Site Styles
 
-Only put styles in here that will be used across the entire site. 
+Only put styles in here that will be used across the entire site.
 For styles only applying to one particular page, use the appropriate
 page SCSS file.
 ******************************************************************/
@@ -105,7 +105,17 @@ p{
 /*********************
 HEADER STYLES [FOR NAV STYLES -- USE _MENU.SCSS]
 *********************/
-
+.tagline{
+	font:$h1;
+	color:#fff;
+    position: absolute;
+    padding: 50px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    z-index: 99999999;
+    transition: $slow;
+}
 
 /*********************
 CONTENT STYLES

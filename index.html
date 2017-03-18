@@ -1,6 +1,13 @@
 <!doctype html>
-
 <html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Longbeard Creative</title>
+    <meta name="description" content="Longbeard Creative">
+    <meta name="author" content="LBC">
+    <link rel="stylesheet" href="assets/css/style.css?v=1.0">
+    <!--[if lt IE 9]>
 <head>
   <meta charset="utf-8">
 
@@ -16,8 +23,29 @@
   <![endif]-->
 </head>
 
+<body>
+    <div class="lb_wrapper">
+        <h1 style="display:none" class="homepage-tagline">Revolutionary <br />by Design.</h1>
+        <canvas class="canvas-source js-canvas"></canvas>
+        <div class="nav-wrapper">
+            <div class="logo-wrapper">
+                <a href="/" alt="Home"><img id="logo" src="assets/img/LBC-W-Round-LARGE.png" /></a>
+            </div>
+            <nav id="home-nav">
+                <ul>
+                    <li><a href="#">Story</a></li>
+                    <li><a href="#">Work</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Contact</a></li>
+            </nav>
+        </div>
+    </div>
+    <script src="assets/js/jquery-3.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r73/three.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <script src="assets/js/main.js" type="text/javascript"></script>
 <body class="m-scene" id="main">
-  <h1 class="homepage-tagline scene_element scene_element--fadein">Revolutionary <br />by Design.</h1>
+  <h1 class="tagline scene_element scene_element--fadein">Revolutionary <br />by Design.</h1>
   <div class="nav-wrapper scene_element scene_element--fadeinup">
     <div class="logo-wrapper">
       <a href="/" alt="Home"><img id="logo" src="assets/img/Logos/LBC-W-Logo-SMALL.png" /></a>
@@ -178,7 +206,7 @@
     }
 
     function render() {
-      
+
       /*<-- controls the position of the camera looking at the scene in a x,y,z fashion*/
       camera.position.set(750,900,600);
       camera.position.x += ((mouseX - camera.position.x ) * .002);
@@ -191,10 +219,10 @@
 
       */
 
-      
+
       camera.lookAt( scene.position - 200 );
 
-      
+
 
       renderer.render( scene, camera );
 
@@ -211,4 +239,5 @@
   <script src="assets/js/jquery-3.1.1.min.js"></script>
   <script src="assets/js/smoothState.min.js"></script>
 </body>
+
 </html>
