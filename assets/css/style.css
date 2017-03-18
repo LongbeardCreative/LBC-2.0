@@ -36,13 +36,11 @@ FONT FACE - PLUTO
   src: url("/assets/fonts/plutosansbold-webfont.woff2") format("woff2"), url("/assets/fonts/plutosansbold-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'pluto-light';
   src: url("/assets/fonts/plutosanslight-webfont.woff2") format("woff2"), url("/assets/fonts/plutosanslight-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-
 /*
  i imported this one in the functions file so bones would look sweet.
  don't forget to remove it for your site.
@@ -471,40 +469,72 @@ Stylesheet: Page Transitions - styles
   /** An element that fades in and slides up */
   /** An element that fades in and slides from the right */ }
   .m-scene .scene_element {
+    -webkit-animation-duration: 0.25s;
     animation-duration: 0.25s;
     transition-timing-function: ease-in;
+    -webkit-animation-fill-mode: both;
     animation-fill-mode: both; }
   .m-scene .scene_element--fadein {
+    -webkit-animation-name: fadeIn;
     animation-name: fadeIn; }
   .m-scene .scene_element--fadeinup {
+    -webkit-animation-name: fadeInUp;
     animation-name: fadeInUp; }
   .m-scene .scene_element--fadeinright {
+    -webkit-animation-name: fadeInRight;
     animation-name: fadeInRight; }
 
 /* Keyframes for animations */
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 @keyframes fadeIn {
   0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
-@keyframes fadeInUp {
+@-webkit-keyframes fadeInUp {
   0% {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0); }
   100% {
     opacity: 1;
+    -webkit-transform: none;
+    transform: none; } }
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none; } }
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
     transform: none; } }
 @keyframes fadeInRight {
   0% {
     opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0); }
   100% {
     opacity: 1;
+    -webkit-transform: none;
     transform: none; } }
 /******************************************************************
 Site Name: LBC
 
-Stylesheet: Fly-out Menu 
+Stylesheet: Fly-out Menu
 
 
 ******************************************************************/
@@ -512,26 +542,49 @@ Stylesheet: Fly-out Menu
   display: block;
   background: #232526;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #232526, #414345);
+  background: -webkit-linear-gradient(to left, rgba(35, 37, 38, 0.4), transparent);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #232526, #414345);
+  background: linear-gradient(to left, rgba(35, 37, 38, 0.4), transparent);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background-clip: content-box;
-  float: right;
-  right: -15%;
-  position: absolute;
-  width: 15%;
-  top: 0;
-  height: 100vh;
-  padding-left: 15%;
-  overflow: hidden;
-  opacity: 0;
-  transition: right 0.15s;
-  -webkit-transition: right 0.15s; }
+  float: left;
+  width: 300px; }
 
-.nav-wrapper:hover {
-  right: 0;
-  opacity: 1; }
+#home-nav ul li {
+  list-style-type: none;
+  padding: 20px; }
+  #home-nav ul li a {
+    text-decoration: none;
+    font: 2em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+    opacity: 0.5;
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out; }
+    #home-nav ul li a:hover {
+      opacity: 1; }
+
+#logo {
+  width: 130px;
+  opacity: 0.5;
+  margin-bottom: 5px;
+  -webkit-transform: rotateY(5deg);
+  transform: rotateY(5deg);
+  transition: 0.3s ease-in-out; }
+  #logo:hover {
+    opacity: 1; }
+
+.canvas-source {
+  position: absolute;
+  z-index: 200;
+  opacity: 0.2;
+  display: none; }
+
+.js-stage {
+  transition: 0.6s ease-in-out; }
+
+.logo-wrapper {
+  padding-top: 10%;
+  padding-left: 7%; }
 
 /*********************
 IMPORT BREAKPOINTS
@@ -539,7 +592,7 @@ IMPORT BREAKPOINTS
 /******************************************************************
 Stylesheet: Universal Site Styles
 
-Only put styles in here that will be used across the entire site. 
+Only put styles in here that will be used across the entire site.
 For styles only applying to one particular page, use the appropriate
 page SCSS file.
 ******************************************************************/
@@ -570,10 +623,10 @@ a, a:visited {
     color: #d10e3c; }
   a:link, a:visited:link {
     /*
-		this highlights links on iPhones/iPads.
-		so it basically works like the :hover selector
-		for mobile devices.
-		*/
+    this highlights links on iPhones/iPads.
+    so it basically works like the :hover selector
+    for mobile devices.
+    */
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3); }
 
 /******************************************************************
@@ -583,9 +636,9 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
   text-rendering: optimizelegibility;
   font-weight: 500;
   /*
-	if you're going to use webfonts, be sure to check your weights
-	http://css-tricks.com/watch-your-font-weight/
-	*/
+  if you're going to use webfonts, be sure to check your weights
+  http://css-tricks.com/watch-your-font-weight/
+  */
   /* removing text decoration from all headline links */ }
   h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a {
     text-decoration: none; }
@@ -615,6 +668,17 @@ h5, .h5 {
 /*********************
 HEADER STYLES [FOR NAV STYLES -- USE _MENU.SCSS]
 *********************/
+.tagline {
+  font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  position: absolute;
+  padding: 50px;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  z-index: 99999999;
+  transition: 0.6s ease-in-out; }
+
 /*********************
 CONTENT STYLES
 *********************/
@@ -623,30 +687,30 @@ FOOTER STYLES
 *********************/
 @media only screen and (min-width: 481px) {
   /******************************************************************
-Site Name:
-Author:
-
-Stylesheet: 481px and Up Stylesheet
-
-This stylesheet is loaded for larger devices. It's set to
-481px because at 480px it would load on a landscaped iPhone.
-This isn't ideal because then you would be loading all those
-extra styles on that same mobile connection.
-
-A word of warning. This size COULD be a larger mobile device,
-so you still want to keep it pretty light and simply expand
-upon your base.scss styles.
-
-******************************************************************/
+  Site Name:
+  Author:
+  
+  Stylesheet: 481px and Up Stylesheet
+  
+  This stylesheet is loaded for larger devices. It's set to
+  481px because at 480px it would load on a landscaped iPhone.
+  This isn't ideal because then you would be loading all those
+  extra styles on that same mobile connection.
+  
+  A word of warning. This size COULD be a larger mobile device,
+  so you still want to keep it pretty light and simply expand
+  upon your base.scss styles.
+  
+  ******************************************************************/
   /*
-IMPORTANT NOTE ABOUT SASS 3.3 & UP
-You can't use @extend within media queries
-anymore, so just be aware that if you drop
-them in here, they won't work.
-*/
+  IMPORTANT NOTE ABOUT SASS 3.3 & UP
+  You can't use @extend within media queries
+  anymore, so just be aware that if you drop
+  them in here, they won't work.
+  */
   /*********************
-NAVIGATION STYLES
-*********************/
+  NAVIGATION STYLES
+  *********************/
   /* .menu is clearfixed inside mixins.scss */
   .menu {
     /* end .menu ul */ }
@@ -656,17 +720,18 @@ NAVIGATION STYLES
       /* end current highlighters */ }
       .menu ul li {
         /*
-				plan your menus and drop-downs wisely.
-				*/ }
+        plan your menus and drop-downs wisely.
+        */ }
         .menu ul li a {
           /*
-					you can use hover styles here even though this size
-					has the possibility of being a mobile device.
-					*/ }
+          you can use hover styles here even though this size
+          has the possibility of being a mobile device.
+          */ }
+
   /* end .menu */
   /*********************
-POSTS & CONTENT STYLES
-*********************/
+  POSTS & CONTENT STYLES
+  *********************/
   /* entry content */
   .entry-content {
     /* at this larger size, we can start to align images */ }
@@ -683,47 +748,48 @@ POSTS & CONTENT STYLES
       margin-left: auto;
       display: block;
       clear: both; }
+
   /* end .entry-content */
   /*********************
-FOOTER STYLES
-*********************/
+  FOOTER STYLES
+  *********************/
   /*
-check your menus here. do they look good?
-do they need tweaking?
-*/
+  check your menus here. do they look good?
+  do they need tweaking?
+  */
   /* end .footer-links */ }
-
 /*********************
 TABLET & SMALLER LAPTOPS
 *********************/
 @media only screen and (min-width: 768px) {
   /******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Tablet & Small Desktop Stylesheet
-
-Here's where you can start getting into the good stuff.
-This size will work on iPads, other tablets, and desktops.
-So you can start working with more styles, background images,
-and other resources. You'll also notice the grid starts to
-come into play. Have fun!
-
-******************************************************************/
+  Site Name:
+  Author:
+  
+  Stylesheet: Tablet & Small Desktop Stylesheet
+  
+  Here's where you can start getting into the good stuff.
+  This size will work on iPads, other tablets, and desktops.
+  So you can start working with more styles, background images,
+  and other resources. You'll also notice the grid starts to
+  come into play. Have fun!
+  
+  ******************************************************************/
   /*********************
-GENERAL STYLES
-*********************/
+  GENERAL STYLES
+  *********************/
   /*********************
-LAYOUT & GRID STYLES
-*********************/
+  LAYOUT & GRID STYLES
+  *********************/
   .wrap {
     width: 760px; }
+
   /*********************
-HEADER STYLES
-*********************/
+  HEADER STYLES
+  *********************/
   /*********************
-NAVIGATION STYLES
-*********************/
+  NAVIGATION STYLES
+  *********************/
   .nav {
     border: 0;
     /* end .menu ul li */
@@ -736,15 +802,15 @@ NAVIGATION STYLES
       float: left;
       position: relative;
       /*
-		plan your menus and drop-downs wisely.
-		*/
+      plan your menus and drop-downs wisely.
+      */
       /* showing sub-menus */ }
       .nav li a {
         border-bottom: 0;
         /*
-			you can use hover styles here even though this size
-			has the possibility of being a mobile device.
-			*/ }
+        you can use hover styles here even though this size
+        has the possibility of being a mobile device.
+        */ }
         .nav li a:hover, .nav li a:focus {
           color: #fff;
           text-decoration: underline; }
@@ -760,10 +826,10 @@ NAVIGATION STYLES
         .nav li ul.sub-menu li,
         .nav li ul.children li {
           /*
-				if you need to go deeper, go nuts
-				just remember deeper menus suck
-				for usability. k, bai.
-				*/ }
+          if you need to go deeper, go nuts
+          just remember deeper menus suck
+          for usability. k, bai.
+          */ }
           .nav li ul.sub-menu li a,
           .nav li ul.children li a {
             padding-left: 10px;
@@ -781,15 +847,18 @@ NAVIGATION STYLES
       .nav li:hover > ul {
         top: auto;
         visibility: visible; }
+
   /* end .nav */
   /*********************
-SIDEBARS & ASIDES
-*********************/
+  SIDEBARS & ASIDES
+  *********************/
   .sidebar {
     margin-top: 2.2em; }
+
   .widgettitle {
     border-bottom: 2px solid #444;
     margin-bottom: 0.75em; }
+
   .widget {
     padding: 0 10px;
     margin: 2.2em 0; }
@@ -799,6 +868,7 @@ SIDEBARS & ASIDES
       .widget ul li ul {
         margin-top: 0.75em;
         padding-left: 1em; }
+
   /* links widget */
   /* meta widget */
   /* pages widget */
@@ -811,53 +881,51 @@ SIDEBARS & ASIDES
   /* search widget */
   /* text widget */
   /*********************
-FOOTER STYLES
-*********************/
+  FOOTER STYLES
+  *********************/
   /*
-you'll probably need to do quite a bit
-of overriding here if you styled them for
-mobile. Make sure to double check these!
-*/
+  you'll probably need to do quite a bit
+  of overriding here if you styled them for
+  mobile. Make sure to double check these!
+  */
   .footer-links ul li {
     /*
-			be careful with the depth of your menus.
-			it's very rare to have multi-depth menus in
-			the footer.
-			*/ }
-  /* end .footer-links */ }
+    be careful with the depth of your menus.
+    it's very rare to have multi-depth menus in
+    the footer.
+    */ }
 
+  /* end .footer-links */ }
 /*********************
 DESKTOP
 *********************/
 @media only screen and (min-width: 1030px) {
   /******************************************************************
-Site Name:
-Author:
-
-Stylesheet: Desktop Stylsheet
-
-This is the desktop size. It's larger than an iPad so it will only
-be seen on the Desktop.
-
-******************************************************************/
+  Site Name:
+  Author:
+  
+  Stylesheet: Desktop Stylsheet
+  
+  This is the desktop size. It's larger than an iPad so it will only
+  be seen on the Desktop.
+  
+  ******************************************************************/
   .wrap {
     width: 1040px; } }
-
 /*********************
 LARGER DESKTOPS
 *********************/
 @media only screen and (min-width: 1240px) {
   /******************************************************************
-Site Name: 
-Author: 
-
-Stylesheet: Super Large Monitor Stylesheet
-
-You can add some advanced styles here if you like. This kicks in
-on larger screens.
-
-******************************************************************/ }
-
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Super Large Monitor Stylesheet
+  
+  You can add some advanced styles here if you like. This kicks in
+  on larger screens.
+  
+  ******************************************************************/ }
 /*********************
 IMPORT PAGES
 *********************/
@@ -874,79 +942,6 @@ body {
   background: #000 !important;
   max-height: 100vh !important;
   overflow: hidden; }
-
-.homepage-tagline {
-  font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #fff;
-  position: absolute;
-  padding: 50px;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  -webkit-transform: translate(-50%, calc(-50% - 50px));
-  -ms-transform: translate(-50%, calc(-50% - 50px));
-  transform: translate(-50%, calc(-50% - 50px));
-  background: black;
-  z-index: 99999999;
-  transition: 0.6s ease-in-out; }
-
-<<<<<<< HEAD
-.nav-wrapper {
-  display: block;
-  float: right;
-  right: 3%;
-  position: absolute;
-  width: 15%;
-  top: 5%;
-  opacity: 0;
-  transition: 0.6s ease-in-out;
-  transition-delay: .5s; }
-
-=======
->>>>>>> master
-#home-nav ul li {
-  list-style-type: none;
-  padding: 20px 0 20px 0; }
-
-#home-nav ul li a {
-  text-decoration: none;
-  font: 2em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #fff;
-  opacity: 0.5;
-  transition: 0.3s ease-in-out;
-  -webkit-transition: 0.3s ease-in-out; }
-
-#home-nav ul li a:hover {
-  opacity: 1; }
-
-#logo {
-  width: 130px;
-  opacity: 0.5;
-  margin-bottom: 5px;
-  -webkit-transform: rotateY(5deg);
-  transform: rotateY(5deg);
-  transition: 0.3s ease-in-out; }
-
-#logo:hover {
-  opacity: 1; }
-
-<<<<<<< HEAD
-.canvas-source {
-  position: absolute;
-  z-index: 200;
-  opacity: 0.2;
-  display: none; }
-
-.js-stage {
-  transition: 0.6s ease-in-out; }
-=======
-.logo-wrapper {
-  padding-top: 10%;
-  padding-left: 7%; }
-
-#home-nav {
-  padding-left: 7%; }
->>>>>>> master
 
 /*********************
 RESPONSIVE STYLES
@@ -975,15 +970,82 @@ UNIVERSAL STYLES
 /*********************
 RESPONSIVE STYLES
 *********************/
-/******************************************************************
-Stylesheet: About Page
+.about-page {
+  /******************************************************************
+  Stylesheet: About Page
+  
+  Page-specific styles ONLY. If the styles will be used across the site,
+  use the _base.scss file.
+  ******************************************************************/
+  /*********************
+  UNIVERSAL STYLES
+  *********************/
+  /*********************
+  SLIDER
+  *********************/
+  /*********************
+  RESPONSIVE STYLES
+  *********************/ }
+  .about-page .wrapper {
+    background-image: url("/assets/img/team_photo_bw_1920x1200.jpg");
+    background-position: top center;
+    background-size: cover;
+    width: calc(100vw - 300px);
+    max-width: 1600px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 100vh; }
+  .about-page .slider {
+    padding: 0 15%; }
+    .about-page .slider.content h1 {
+      font: 6em "pluto-bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: white;
+      margin-bottom: 15px; }
+    .about-page .slider.content p {
+      display: inline-block;
+      font: 1.2em "pluto-light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      line-height: 1.8em;
+      color: white; }
+    .about-page .slider .nav {
+      width: 90vw;
+      max-width: 1450px;
+      margin-top: -200px;
+      position: absolute;
+      display: inline-block;
+      padding: initial;
+      display: inline-block;
+      left: 250px; }
+      .about-page .slider .nav .next,
+      .about-page .slider .nav .prev {
+        width: 50%;
+        margin: initial;
+        color: #D4D4D4; }
+        .about-page .slider .nav .next::before,
+        .about-page .slider .nav .prev::before {
+          border-style: solid;
+          border-width: 2px 2px 0 0;
+          content: '';
+          display: inline-block;
+          height: 100px;
+          position: relative;
+          vertical-align: top;
+          width: 100px; }
+      .about-page .slider .nav .next {
+        float: right;
+        right: 0;
+        text-align: right; }
+        .about-page .slider .nav .next::before {
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg); }
+      .about-page .slider .nav .prev {
+        float: left;
+        text-align: left;
+        left: 0; }
+        .about-page .slider .nav .prev::before {
+          -webkit-transform: rotate(-135deg);
+          -ms-transform: rotate(-135deg);
+          transform: rotate(-135deg); }
 
-Page-specific styles ONLY. If the styles will be used across the site,
-use the _base.scss file.
-******************************************************************/
-/*********************
-UNIVERSAL STYLES
-*********************/
-/*********************
-RESPONSIVE STYLES
-*********************/
+

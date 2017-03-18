@@ -4,14 +4,87 @@ Stylesheet: About Page
 Page-specific styles ONLY. If the styles will be used across the site,
 use the _base.scss file.
 ******************************************************************/
-
 /*********************
 UNIVERSAL STYLES
 *********************/
+.wrapper {
+    background-image: url('/assets/img/team_photo_bw_1920x1200.jpg');
+    background-position: top center;
+    background-size: cover;
+    width: calc(100vw - 300px);
+    max-width: 1600px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 100vh;
+}
+/*********************
+SLIDER
+*********************/
+.slider {
+    padding: 0 15%;
 
+    &.content {
+        h1 {
+            font: $h1;
+            color: white;
+            margin-bottom: 15px;
+        }
 
+        p {
+            display: inline-block;
+            font: $p;
+            font-weight: bold;
+            line-height: 1.8em;
+            color: white;
+        }
+    }
 
+    .nav {
+        width: 90vw;
+        max-width: 1450px;
+        margin-top: -200px;
+        position: absolute;
+        display: inline-block;
+        padding: initial;
+        display: inline-block;
+        left: 250px;
+        .next,
+        .prev {
+            width: 50%;
+            margin: initial;
+            color: #D4D4D4;
 
+            &::before {
+                border-style: solid;
+                border-width: 2px 2px 0 0;
+                content: '';
+                display: inline-block;
+                height: 100px;
+                position: relative;
+                vertical-align: top;
+                width: 100px;
+            }
+        }
+
+        .next {
+            float: right;
+            right: 0;
+            text-align: right;
+            &::before {
+                transform: rotate(45deg);
+            }
+        }
+
+        .prev {
+            float: left;
+            text-align: left;
+            left: 0;
+            &::before {
+                transform: rotate(-135deg);
+            }
+        }
+    }
+}
 /*********************
 RESPONSIVE STYLES
 *********************/
